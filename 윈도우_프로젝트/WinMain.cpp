@@ -1,12 +1,20 @@
 #include <windows.h>
 #include <tchar.h>
 
+<<<<<<< HEAD
 #include "GameFramework.h"
+=======
+#include "GameFrameWork.h"
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
 
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = L"Window Class Name";
 LPCTSTR lpszWindowName = L"Window Programming Lab";
+<<<<<<< HEAD
 CGameFramework gGameFramework;
+=======
+CGameFrameWork gGameFramework;
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 
@@ -34,10 +42,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	while (GetMessage(&Message, 0, 0, 0)) {
 		TranslateMessage(&Message);
 		DispatchMessage(&Message);
+<<<<<<< HEAD
 		gGameFramework.FrameAdvance();
 	}
 
 	gGameFramework.OnDestroy();
+=======
+	}
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
 	return Message.wParam;
 }
 
@@ -46,7 +58,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	HDC hDC;
 	switch (uMsg) {
 	case WM_CREATE:
+<<<<<<< HEAD
 		gGameFramework.OnCreate(g_hInst, hWnd);
+=======
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
 		break;
 	case WM_PAINT:
 		hDC = BeginPaint(hWnd, &ps);
@@ -67,7 +82,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		InvalidateRect(hWnd, NULL, false);
 		break;
 	case WM_DESTROY:
+<<<<<<< HEAD
 		gGameFramework.OnDestroy();
+=======
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
 		PostQuitMessage(0);
 		break;
 	}

@@ -127,14 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="GameFramework.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
+=======
+    <ClCompile Include="GameFrameWork.cpp" />
+    <ClCompile Include="Player.cpp" />
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="GameFramework.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Player.h" />
@@ -147,6 +153,12 @@
   <ItemGroup>
     <Image Include="bitmap1.bmp" />
   </ItemGroup>
+=======
+    <ClInclude Include="GameFrameWork.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Timer.h" />
+  </ItemGroup>
+>>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
