@@ -1,3 +1,5 @@
+#pragma comment(lib, "msimg32.lib")
+
 #include <windows.h>
 #include <tchar.h>
 

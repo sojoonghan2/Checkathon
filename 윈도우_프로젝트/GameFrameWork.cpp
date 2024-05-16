@@ -14,8 +14,9 @@ void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hWnd) {
 void CGameFramework::OnDestroy() {
 	ReleaseObjects();
 
-	if (m_memdcBack) ::DeleteObject(m_memdcBack);
+	if (m_memdcBack) ::DeleteObject(hBit);
 	if (m_memdcFront) ::DeleteDC(m_memdcFront);
+	if (m_memdcFront) ::DeleteDC(m_memdcBack);
 }
 
 void CGameFramework::BuildFrameBuffer() {
@@ -26,10 +27,9 @@ void CGameFramework::BuildFrameBuffer() {
 	m_memdcFront = ::CreateCompatibleDC(hDC);
 	m_memdcBack = ::CreateCompatibleDC(m_memdcFront);
 	hBit = CreateCompatibleBitmap(hDC, 1280, 800);
+	::SelectObject(m_memdcFront, hBit);
 
-	DeleteObject(hBit);
-	DeleteDC(m_memdcBack);
-	DeleteDC(m_memdcFront);
+	
 	::ReleaseDC(m_hWnd, hDC);
 	::SetBkMode(m_memdcFront, TRANSPARENT);
 }
@@ -65,14 +65,18 @@ void CGameFramework::BuildObjects() {
 
 void CGameFramework::ReleaseObjects() {
 	if (m_pScene) {
+		m_pScene->ReleaseObjects();
 		delete m_pScene;
 	}
 
-	if (m_pPlayer) delete m_pPlayer;
+	if (m_pPlayer) {
+		m_pPlayer->ReleaseBits();
+		delete m_pPlayer;
+	}
 }
 
 void CGameFramework::LoadObjectBit() {
-	//m_pPlayer->LoadBit(1, m_hInstance, 101);
+	m_pPlayer->LoadBit(1, m_hInstance, 101);
 }
 
 void CGameFramework::AnimateObjects() {
@@ -84,9 +88,11 @@ void CGameFramework::FrameAdvance() {
 	AnimateObjects();
 	ClearFrameBuffer(RGB(255, 255, 255));
 
+	m_pScene->Draw(m_memdcFront, m_memdcBack, oldBit2);
+
 	PresentFrameBuffer();
 
-	m_pScene->Draw(m_memdcFront, m_memdcBack, oldBit2);
+	
 }
 
 // 윈도우 마우스
@@ -110,9 +116,17 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 	switch (nMessageID) {
 	case WM_KEYDOWN:
 		switch (wParam) {
+		case VK_UP:
+			m_pPlayer->MoveUP(10);
+			break;
+		case VK_DOWN:
+			m_pPlayer->MoveDown(10);
+			break;
 		case VK_RIGHT:
+			m_pPlayer->MoveRight(10);
 			break;
 		case VK_LEFT:
+			m_pPlayer->MoveLeft(10);
 			break;
 		case VK_ESCAPE:
 			::PostQuitMessage(0);

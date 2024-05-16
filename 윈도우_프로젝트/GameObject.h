@@ -14,9 +14,14 @@ public:
 	CGameObject() {}
 	~CGameObject() {}
 	void SetPos(int xPos, int yPos);
-	void Move(int xPos);
+	virtual void MoveUP(int yPos);
+	virtual void MoveDown(int yPos);
+	virtual void MoveLeft(int xPos);
+	virtual void MoveRight(int xPos);
 
 	virtual void LoadBit(int bit_num, HINSTANCE m_hInstance, int IDB_BITMAP);
+	virtual void ReleaseBits();
+
 	virtual void Animate(float fElapsedTime);
 	virtual void Draw(HDC hDCFrameBuffer, HDC m_memdcBack, HBITMAP oldBit2);
 };

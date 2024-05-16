@@ -19,5 +19,9 @@ public:
 	virtual ~CScene();
 
 	virtual void Draw(HDC hDCFrameBuffer, HDC m_memdcBack, HBITMAP oldBit2);
+
+	virtual void BuildObjects();
+	virtual void ReleaseObjects();
+	virtual void ReleaseBits();
 };
 
