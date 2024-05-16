@@ -21,41 +21,29 @@
     <ClCompile Include="Timer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="GameFramework.cpp">
-=======
-    <ClCompile Include="GameFrameWork.cpp">
->>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="GameObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-=======
->>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="GameFramework.h">
-=======
-    <ClInclude Include="GameFrameWork.h">
->>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="GameObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -72,7 +60,5 @@
     <Image Include="bitmap1.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-=======
->>>>>>> dc3dd22715aa3b968f5cb432a07e0b34ede470c6
   </ItemGroup>
 </Project>
