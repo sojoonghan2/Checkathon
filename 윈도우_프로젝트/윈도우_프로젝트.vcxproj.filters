@@ -50,6 +50,9 @@
     <ClInclude Include="Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="윈도우_프로젝트.rc">
@@ -58,6 +61,36 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmap1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-002.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-003.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-004.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-005.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-006.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-007.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-008.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-009.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-010.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Char-001.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

@@ -1,4 +1,6 @@
 #pragma once
+#include <tchar.h>
+
 #include "Timer.h"
 #include "Player.h"
 #include "Scene.h"
@@ -22,6 +24,8 @@ private:
 
 	CTimer						m_Timer;
 
+	_TCHAR						m_pszFrameRate[50];
+
 public:
 	CGameFramework() {}
 	~CGameFramework() {}
@@ -41,7 +45,11 @@ public:
 	void AnimateObjects();
 	void FrameAdvance();
 
-	void onTimer(HWND hWnd, WPARAM wParam);
+	void ProcessInput();
+
+	void TimerStop() { m_Timer.Stop(); }
+	void TimerStart() { m_Timer.Start(); }
+
 	void OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	void OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	LRESULT CALLBACK OnProcessingWindowMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);

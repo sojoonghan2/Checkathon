@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+#include <vector>
 
 class CGameObject {
 private:
@@ -8,9 +9,12 @@ private:
 	int						m_speed;
 
 	HBITMAP*				m_bit;
-	int						bit_num;
+	int*					m_i_bit;
 
 public:
+	int						bit_num;
+	int						now_bit;
+
 	CGameObject() {}
 	~CGameObject() {}
 	void SetPos(int xPos, int yPos);
@@ -19,7 +23,7 @@ public:
 	virtual void MoveLeft(int xPos);
 	virtual void MoveRight(int xPos);
 
-	virtual void LoadBit(int bit_num, HINSTANCE m_hInstance, int IDB_BITMAP);
+	virtual void LoadBit(int bit_num, HINSTANCE m_hInstance, std::vector<int> m_i_bit);
 	virtual void ReleaseBits();
 
 	virtual void Animate(float fElapsedTime);

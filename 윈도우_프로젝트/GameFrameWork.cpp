@@ -1,8 +1,11 @@
 #include <windows.h>
+#include <tchar.h>
+#include <vector>
 
 #include "GameFrameWork.h"
 
 void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hWnd) {
+
 	m_hInstance = hInstance;
 	m_hWnd = hWnd;
 
@@ -76,7 +79,12 @@ void CGameFramework::ReleaseObjects() {
 }
 
 void CGameFramework::LoadObjectBit() {
-	m_pPlayer->LoadBit(1, m_hInstance, 101);
+	std::vector<int> player_bit;
+	m_pPlayer->bit_num = 10;
+	for (int i{}; i < m_pPlayer->bit_num; ++i) {
+		player_bit.push_back(i + 101);
+	}
+	m_pPlayer->LoadBit(m_pPlayer->bit_num, m_hInstance, player_bit);
 }
 
 void CGameFramework::AnimateObjects() {
@@ -84,15 +92,36 @@ void CGameFramework::AnimateObjects() {
 }
 
 void CGameFramework::FrameAdvance() {
+	m_Timer.Tick(60.0f);
 
 	AnimateObjects();
+	ProcessInput();
+
 	ClearFrameBuffer(RGB(255, 255, 255));
 
-	m_pScene->Draw(m_memdcFront, m_memdcBack, oldBit2);
+	if(m_pPlayer) m_pPlayer->Draw(m_memdcFront, m_memdcBack, oldBit2);
+	if(m_pScene) m_pScene->Draw(m_memdcFront, m_memdcBack, oldBit2);
 
 	PresentFrameBuffer();
 
-	
+	// m_pszFrameRate에 왜 문자열이 안들어가는지 모르겠음
+	m_Timer.GetFrameRate(m_pszFrameRate + 12, 37);
+	::SetWindowText(m_hWnd, m_pszFrameRate);
+}
+
+void CGameFramework::ProcessInput() {
+	if (GetAsyncKeyState(VK_LEFT)) {
+		m_pPlayer->MoveLeft(300 * m_Timer.GetTimeElapsed());
+	}
+	if (GetAsyncKeyState(VK_RIGHT)) {
+		m_pPlayer->MoveRight(300 * m_Timer.GetTimeElapsed());
+	}
+	if (GetAsyncKeyState(VK_UP)) {
+		m_pPlayer->MoveUP(300 * m_Timer.GetTimeElapsed());
+	}
+	if (GetAsyncKeyState(VK_DOWN)) {
+		m_pPlayer->MoveDown(300 * m_Timer.GetTimeElapsed());
+	}
 }
 
 // 윈도우 마우스
@@ -116,18 +145,6 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 	switch (nMessageID) {
 	case WM_KEYDOWN:
 		switch (wParam) {
-		case VK_UP:
-			m_pPlayer->MoveUP(10);
-			break;
-		case VK_DOWN:
-			m_pPlayer->MoveDown(10);
-			break;
-		case VK_RIGHT:
-			m_pPlayer->MoveRight(10);
-			break;
-		case VK_LEFT:
-			m_pPlayer->MoveLeft(10);
-			break;
 		case VK_ESCAPE:
 			::PostQuitMessage(0);
 			break;
@@ -163,8 +180,4 @@ LRESULT CALLBACK CGameFramework::OnProcessingWindowMessage(HWND hWnd, UINT nMess
 		break;
 	}
 	return(0);
-}
-
-void CGameFramework::onTimer(HWND hWnd, WPARAM wParam) {
-	m_Timer.onTimer(hWnd, wParam);
 }

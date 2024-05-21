@@ -5,6 +5,8 @@
 
 #include "GameFramework.h"
 
+#define MAX_LOADSTRING 100
+
 HINSTANCE g_hInst;
 LPCTSTR lpszClass = L"Window Class Name";
 LPCTSTR lpszWindowName = L"Window Programming Lab";
@@ -15,6 +17,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nCmdShow) {
 	HWND hWnd;
 	MSG Message;
+	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(109));
 	WNDCLASSEX WndClass;
 	g_hInst = hInstance;
 	WndClass.cbSize = sizeof(WndClass);
@@ -33,12 +36,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	hWnd = CreateWindow(lpszClass, lpszWindowName, WS_OVERLAPPEDWINDOW, 30, 30, 1024, 768, NULL, (HMENU)NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
-	while (GetMessage(&Message, 0, 0, 0)) {
-		TranslateMessage(&Message);
-		DispatchMessage(&Message);
-		gGameFramework.FrameAdvance();
+	while (1)
+	{
+		if (::PeekMessage(&Message, NULL, 0, 0, PM_REMOVE))
+		{
+			if (Message.message == WM_QUIT) break;
+			if (!::TranslateAccelerator(Message.hwnd, hAccelTable, &Message))
+			{
+				::TranslateMessage(&Message);
+				::DispatchMessage(&Message);
+			}
+		}
+		else
+		{
+			gGameFramework.FrameAdvance();
+		}
 	}
-
 	gGameFramework.OnDestroy();
 	return Message.wParam;
 }
@@ -65,7 +78,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		gGameFramework.OnProcessingWindowMessage(hWnd, uMsg, wParam, lParam);
 		break;
 	case WM_TIMER:
-		gGameFramework.onTimer(hWnd, wParam);
 		InvalidateRect(hWnd, NULL, false);
 		break;
 	case WM_DESTROY:
