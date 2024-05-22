@@ -60,9 +60,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="bitmap1.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
     <Image Include="..\Bitmap\Char-002.bmp">
       <Filter>리소스 파일</Filter>
     </Image>

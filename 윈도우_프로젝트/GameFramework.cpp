@@ -17,9 +17,9 @@ void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hWnd) {
 void CGameFramework::OnDestroy() {
 	ReleaseObjects();
 
-	if (m_memdcBack) ::DeleteObject(hBit);
+	if (hBit) ::DeleteObject(hBit);
+	if (m_memdcBack) ::DeleteDC(m_memdcBack);
 	if (m_memdcFront) ::DeleteDC(m_memdcFront);
-	if (m_memdcFront) ::DeleteDC(m_memdcBack);
 }
 
 void CGameFramework::BuildFrameBuffer() {
@@ -29,7 +29,7 @@ void CGameFramework::BuildFrameBuffer() {
 
 	m_memdcFront = ::CreateCompatibleDC(hDC);
 	m_memdcBack = ::CreateCompatibleDC(m_memdcFront);
-	hBit = CreateCompatibleBitmap(hDC, 1280, 800);
+	hBit = CreateCompatibleBitmap(hDC, 1024, 768);
 	::SelectObject(m_memdcFront, hBit);
 
 	
@@ -62,6 +62,7 @@ void CGameFramework::BuildObjects() {
 	m_pPlayer = player;
 
 	m_pScene = new CScene(m_pPlayer);
+	if (m_pScene) m_pScene->BuildObjects();
 
 	LoadObjectBit();
 }
@@ -88,7 +89,8 @@ void CGameFramework::LoadObjectBit() {
 }
 
 void CGameFramework::AnimateObjects() {
-
+	float fTimeElapsed = m_Timer.GetTimeElapsed();
+	if (m_pPlayer) m_pPlayer->Animate(fTimeElapsed);
 }
 
 void CGameFramework::FrameAdvance() {
