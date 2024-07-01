@@ -33,6 +33,9 @@
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
@@ -53,6 +56,9 @@
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="윈도우_프로젝트.rc">
@@ -60,34 +66,55 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Bitmap\Char-002.bmp">
+    <Image Include="..\Bitmap\Background\Background.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-003.bmp">
+    <Image Include="..\Bitmap\UI\O.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-004.bmp">
+    <Image Include="..\Bitmap\UI\X.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-005.bmp">
+    <Image Include="..\Bitmap\Player\player1.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-006.bmp">
+    <Image Include="..\Bitmap\Player\player2.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-007.bmp">
+    <Image Include="..\Bitmap\Player\player3.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-008.bmp">
+    <Image Include="..\Bitmap\Player\player4.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-009.bmp">
+    <Image Include="..\Bitmap\Player\player5.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-010.bmp">
+    <Image Include="..\Bitmap\Player\player6.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\Bitmap\Char-001.bmp">
+    <Image Include="..\Bitmap\Player\player7.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Player\player8.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Player\player9.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Player\player10.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Player\player11.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\Player\player12.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\UI\hp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\Bitmap\UI\nhp.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

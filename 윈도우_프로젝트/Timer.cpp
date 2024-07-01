@@ -1,9 +1,6 @@
 #pragma comment(lib, "winmm.lib")
 
-#include <Windows.h>
-#include <math.h>
-#include <tchar.h> 
-
+#include "stdafx.h"
 #include "Timer.h"
 
 CTimer::CTimer() {

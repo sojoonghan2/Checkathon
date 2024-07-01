@@ -1,7 +1,4 @@
-#include <windows.h>
-#include <tchar.h>
-#include <vector>
-
+#include "stdafx.h"
 #include "GameFrameWork.h"
 
 void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hWnd) {
@@ -29,7 +26,7 @@ void CGameFramework::BuildFrameBuffer() {
 
 	m_memdcFront = ::CreateCompatibleDC(hDC);
 	m_memdcBack = ::CreateCompatibleDC(m_memdcFront);
-	hBit = CreateCompatibleBitmap(hDC, 1024, 768);
+	hBit = CreateCompatibleBitmap(hDC, WINDOWLENGTH, WINDOWWIDTH);
 	::SelectObject(m_memdcFront, hBit);
 
 	
@@ -58,7 +55,7 @@ void CGameFramework::PresentFrameBuffer() {
 
 void CGameFramework::BuildObjects() {
 	CPlayer* player = new CPlayer;
-	player->SetPos(10, 10);
+	player->SetPos(400, 500);
 	m_pPlayer = player;
 
 	m_pScene = new CScene(m_pPlayer);
@@ -81,11 +78,12 @@ void CGameFramework::ReleaseObjects() {
 
 void CGameFramework::LoadObjectBit() {
 	std::vector<int> player_bit;
-	m_pPlayer->bit_num = 10;
-	for (int i{}; i < m_pPlayer->bit_num; ++i) {
+	m_pPlayer->m_bit_num = 12;
+	for (int i{}; i < m_pPlayer->m_bit_num; ++i) {
 		player_bit.push_back(i + 101);
 	}
-	m_pPlayer->LoadBit(m_pPlayer->bit_num, m_hInstance, player_bit);
+	if (m_pPlayer) m_pPlayer->LoadBit(m_pPlayer->m_bit_num, m_hInstance, player_bit);
+	if (m_pScene) m_pScene->LoadObjectBit(m_hInstance);
 }
 
 void CGameFramework::AnimateObjects() {
@@ -101,8 +99,8 @@ void CGameFramework::FrameAdvance() {
 
 	ClearFrameBuffer(RGB(255, 255, 255));
 
-	if(m_pPlayer) m_pPlayer->Draw(m_memdcFront, m_memdcBack, oldBit2);
 	if(m_pScene) m_pScene->Draw(m_memdcFront, m_memdcBack, oldBit2);
+	if (m_pPlayer) m_pPlayer->Draw(m_memdcFront, m_memdcBack, oldBit2);
 
 	PresentFrameBuffer();
 
@@ -112,17 +110,29 @@ void CGameFramework::FrameAdvance() {
 }
 
 void CGameFramework::ProcessInput() {
+	bool keyPressed = false;
+
 	if (GetAsyncKeyState(VK_LEFT)) {
-		m_pPlayer->MoveLeft(300 * m_Timer.GetTimeElapsed());
+		m_pPlayer->MoveLeft(200 * m_Timer.GetTimeElapsed());
+		m_pPlayer->m_type = LEFTMOVE;
+		keyPressed = true;
 	}
 	if (GetAsyncKeyState(VK_RIGHT)) {
-		m_pPlayer->MoveRight(300 * m_Timer.GetTimeElapsed());
+		m_pPlayer->MoveRight(200 * m_Timer.GetTimeElapsed());
+		m_pPlayer->m_type = RIGHTMOVE;
+		keyPressed = true;
 	}
 	if (GetAsyncKeyState(VK_UP)) {
-		m_pPlayer->MoveUP(300 * m_Timer.GetTimeElapsed());
+		m_pPlayer->MoveUP(200 * m_Timer.GetTimeElapsed());
+		keyPressed = true;
 	}
 	if (GetAsyncKeyState(VK_DOWN)) {
-		m_pPlayer->MoveDown(300 * m_Timer.GetTimeElapsed());
+		m_pPlayer->MoveDown(200 * m_Timer.GetTimeElapsed());
+		keyPressed = true;
+	}
+
+	if (!keyPressed) {
+		m_pPlayer->m_type = IDLE;
 	}
 }
 

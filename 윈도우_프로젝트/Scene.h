@@ -1,7 +1,6 @@
 #pragma once
 
-#include <windows.h>
-
+#include "stdafx.h"
 #include "GameObject.h"
 #include "Player.h"
 
@@ -12,13 +11,21 @@ private:
 
 	CGameObject**				m_Objects = NULL;
 
-	CPlayer*					m_player;
+	CPlayer*					m_pPlayer;
+
+	CBackgroundObject*			m_pBackground;
+
+	CUIObject*					m_OUI;
+
+	CUIObject*					m_XUI;
 
 public:
 	CScene(CPlayer* player);
 	virtual ~CScene();
 
-	virtual void Draw(HDC hDCFrameBuffer, HDC m_memdcBack, HBITMAP oldBit2);
+	void LoadObjectBit(HINSTANCE hInstance);
+
+	virtual void Draw(HDC m_memdcFront, HDC m_memdcBack, HBITMAP oldBit2);
 
 	virtual void BuildObjects();
 	virtual void ReleaseObjects();

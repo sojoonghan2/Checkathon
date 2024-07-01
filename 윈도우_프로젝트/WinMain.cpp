@@ -1,8 +1,6 @@
 #pragma comment(lib, "msimg32.lib")
 
-#include <windows.h>
-#include <tchar.h>
-
+#include "stdafx.h"
 #include "GameFramework.h"
 
 #define MAX_LOADSTRING 100
@@ -33,7 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdPa
 	WndClass.lpszClassName = lpszClass;
 	WndClass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	RegisterClassEx(&WndClass);
-	hWnd = CreateWindow(lpszClass, lpszWindowName, WS_OVERLAPPEDWINDOW, 30, 30, 1024, 768, NULL, (HMENU)NULL, hInstance, NULL);
+	hWnd = CreateWindow(lpszClass, lpszWindowName, WS_OVERLAPPEDWINDOW, 30, 30, WINDOWLENGTH, WINDOWWIDTH, NULL, (HMENU)NULL, hInstance, NULL);
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 	while (1)
